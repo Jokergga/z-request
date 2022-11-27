@@ -1,10 +1,10 @@
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
-import path from "path";
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const path =  require("path");
 
-export default {
+module.exports = {
   mode: "development", // production
   // 打包入口，默认为 index.tsx
-  entry: path.resolve(process.cwd(), "src/index.ts"),
+  entry: path.resolve(__dirname, "src/index.ts"),
   optimization: {
     minimize: false, // 关闭代码压缩，可选
     runtimeChunk: false,
@@ -28,18 +28,11 @@ export default {
   },
   // 输出
   output: {
-    path: path.resolve(process.cwd(), "dist"), //指定打包文件的目录
+    path: path.resolve(__dirname, "dist"), //指定打包文件的目录
     filename: "[name].js", //打包文件的名字
-    // // library 名称
-    // library: `request`,
-    // // 输出 umd 类型的 bundle
-    // libraryTarget: "module",
-    // library: {
-    //   type: 'module'
-    // }
     libraryTarget: "umd", // 打包方式
     globalObject: "this", // 全局对象
-    library: "mytest", // 类库名称
+    library: "request", // 类库名称
   },
   //指定webpack的打包使用的模块
   module: {
